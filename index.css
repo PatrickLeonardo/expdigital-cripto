@@ -1,0 +1,97 @@
+body {
+    animation: fadeIn 2s ease-in-out;
+    background-color: LightGray;
+    font-family: Space Grotesk,ui-sans-serif,system-ui,sans-serif,Apple Color Emoji,Segoe UI Emoji,Segoe UI Symbol,Noto Color Emoji;
+}
+
+h1 {
+    font-size: 3em;
+}
+
+#form {
+    margin-top: 30px;
+    padding: 35px 45px 10px 45px;
+    border: solid 4px;
+    border-color: rgb(26 26 26/var(--tw-text-opacity,1));
+    border-radius: 14px;
+    box-shadow: 0 8px 22px rgba(0,0,0,0.25);
+    width: 380px;
+    animation: fadeIn 0.6s ease-in-out;
+}
+
+h2 {
+    text-align: center;
+}
+
+h3 {
+    text-align: left;
+    padding-left: 8px;
+}
+
+input, select {
+    width: 350px;
+    padding: 10px;
+    background-color: Linen;
+    margin-bottom: 18px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    outline: none;
+    transition: all 0.3s ease;
+    font-size: 0.95em;
+}
+
+select {
+    width: 370px;
+    background-color: Linen;
+}
+
+input[type="reset"],
+input[type="submit"] {
+    width: 370px;
+    background-color: DodgerBlue;
+    color: white;
+    padding: 10px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: all 0.3s ease;
+}
+
+#codificacao {
+    width: 370px;
+    background-color: Linen;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    padding: 10px;
+    visibility: hidden;
+}
+
+@media (max-width:600px) {
+
+    h1 {
+        font-size: 2.2em;
+        margin-bottom: 100px;
+    }
+
+    #form {
+        width: 70%;
+        padding-left: 20px;
+        padding-right: 20px;
+    }
+
+    #codificacao,
+    input[type="submit"],
+    input[type="text"],
+    input[type="number"],
+    select
+    {
+        box-sizing: border-box;
+        width: 100%;
+        margin-left: auto;
+        margin-right: auto;
+        padding: 10px;
+    }
+
+}
+
