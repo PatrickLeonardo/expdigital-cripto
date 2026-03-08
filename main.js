@@ -9,8 +9,8 @@ const cifrarAtbashHTML = () => {
     const cifra = cifrarAtbash(mensagem);
     
     const codificacao = document.getElementById('codificacao');
-    codificacao.style.visibility = "visible";
     codificacao.innerHTML = cifra;
+    codificacao.style.visibility = "visible";
 
 }
 

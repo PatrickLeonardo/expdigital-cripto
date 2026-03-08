@@ -24,6 +24,10 @@ cifra.addEventListener("change", () => {
                 <input type="submit" id="cifrarAtbash" value="Cifrar">
             `;
 
+            document.getElementById('cifrarAtbash').onclick = () => {
+                cifrarAtbashHTML();
+            }
+
             break;
         
         case 'Cesar':
