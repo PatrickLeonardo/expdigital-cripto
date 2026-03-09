@@ -1,7 +1,7 @@
-const cifrarVigenere = (mensagem, palavraChave, modo = 'codificar') => {
+const cifrarVigenere = (mensagem, palavraChave, modo = "codificar") => {
     
     const letras = "abcdefghijklmnopqrstuvwxyz";
-    let msg_cifrada = '';
+    let msg_cifrada = "";
 
     let chave = palavraChave.toLowerCase();
     let chaveAlterada = chave;
@@ -44,9 +44,9 @@ const cifrarVigenere = (mensagem, palavraChave, modo = 'codificar') => {
         let indiceMensagem = letras.indexOf(caractere);
         let indiceChaveAlt = letras.indexOf(chaveAlterada[k]); 
 
-        let indiceCifra = '';
+        let indiceCifra = "";
 
-        if(modo == 'codificar') {
+        if(modo == "codificar") {
             indiceCifra = (indiceMensagem + indiceChaveAlt) % 26;
         } else {
             indiceCifra = (indiceMensagem - indiceChaveAlt + 26) % 26;

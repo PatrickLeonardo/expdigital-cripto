@@ -10,6 +10,7 @@ h1 {
 
 #form {
     margin-top: 30px;
+    margin-bottom: 150px;
     padding: 35px 45px 10px 45px;
     border: solid 4px;
     border-color: rgb(26 26 26/var(--tw-text-opacity,1));
@@ -45,7 +46,7 @@ select {
     background-color: Linen;
 }
 
-input[type="reset"],
+input[type="button"],
 input[type="submit"] {
     width: 370px;
     background-color: DodgerBlue;

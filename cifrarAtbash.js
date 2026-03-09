@@ -1,7 +1,7 @@
 const cifrarAtbash = (mensagem) => {
     
     const letras = "abcdefghijklmnopqrstuvwxyz";
-    let msg_cifrada = ''
+    let msg_cifrada = ""
 
     for(let i = 0; i < mensagem.length; i++) {
         

@@ -44,10 +44,10 @@ class cifraRSA {
 
         let codigosCifrados = [];
 
-        mensagem.split('').forEach(caractere => {
+        mensagem.split("").forEach(caractere => {
 
             let charCode = caractere.charCodeAt();
-            let caractereCifrado = (charCode ** E) % N;
+            let caractereCifrado = (BigInt(charCode) ** BigInt(E)) % BigInt(N);
             
             codigosCifrados.push(caractereCifrado);
 
@@ -66,7 +66,7 @@ class cifraRSA {
      */
     static decifrarRSA_Didatico(mensagemCifrada, D, N) {
         
-        let mensagemDecifrada = '';
+        let mensagemDecifrada = "";
 
         mensagemCifrada.forEach(charCode => {
             
