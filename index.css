@@ -1,15 +1,20 @@
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300..700&display=swap');
+
 body {
     animation: fadeIn 2s ease-in-out;
     background-color: LightGray;
-    font-family: Space Grotesk,ui-sans-serif,system-ui,sans-serif,Apple Color Emoji,Segoe UI Emoji,Segoe UI Symbol,Noto Color Emoji;
+    color: rgba(20, 20, 20);
+    font-family: ui-sans-serif,system-ui,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";
 }
 
 h1 {
     font-size: 3em;
+    margin-top: 80px;
+    font-family: Space Grotesk;
 }
 
-#form {
-    margin-top: 30px;
+form {
+    margin-top: 50px;
     margin-bottom: 150px;
     padding: 35px 45px 10px 45px;
     border: solid 4px;
@@ -75,13 +80,15 @@ input[type="submit"] {
         margin-bottom: 100px;
     }
 
-    #form {
+    form {
         width: 70%;
+        margin-top: 30px;
         padding-left: 20px;
         padding-right: 20px;
     }
 
     #codificacao,
+    input[type="button"],
     input[type="submit"],
     input[type="text"],
     input[type="number"],
