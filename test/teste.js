@@ -1,3 +1,8 @@
+import cifrarAtbash from "../cifrarAtbash.js";
+import cifrarCesar from "../cifrarCesar.js";
+import cifraRSA from "../cifraRSA.js";
+import cifrarVigenere from "../cifrarVinegere.js";
+
 // Atbash:
 
 console.log(cifrarAtbash("OlaMundo"));
@@ -19,15 +24,15 @@ console.log(cifrarVigenere(codificadoV, chaveV, 'decodificar')); // Esperado: "E
 
 const PRIMO_1 = 17;
 const PRIMO_2 = 19;
-const CHAVES = gerarChavesRSA_Didaticas(PRIMO_1, PRIMO_2); 
+const CHAVES = cifraRSA.gerarChavesRSA_Didaticas(PRIMO_1, PRIMO_2); 
 
-const textoOriginal = "OLA"; 
+const textoOriginal = "OLA";
 
 // 1. Cifrar com a Chave Pública
 console.log(CHAVES);
-const cifrado = cifrarRSA_Didatico(textoOriginal, CHAVES.publica.E, CHAVES.publica.N);
+const cifrado = cifraRSA.cifrarRSA_Didatico(textoOriginal, CHAVES.publica.E, CHAVES.publica.N);
 console.log("RSA Cifrado:", cifrado); // Array de números
 
 // 2. Decifrar com a Chave Privada
-const decifrado = decifrarRSA_Didatico(cifrado, CHAVES.privada.D, CHAVES.privada.N);
+const decifrado = cifraRSA.decifrarRSA_Didatico(cifrado, CHAVES.privada.D, CHAVES.privada.N);
 console.log("RSA Decifrado:", decifrado); // Esperado: "OLA"
