@@ -108,9 +108,9 @@ cifra.addEventListener("change", () => {
                         
                         entrada.insertAdjacentHTML("beforeend" ,`
                             <h3>Insira dois números primos: </h3>
-                            <input type="number" required placeholder="0" class="primo">
+                            <input type="number" required min="17" placeholder="0" class="primo">
                             <br>
-                            <input type="number" required placeholder="0" class="primo">
+                            <input type="number" required min="17" placeholder="0" class="primo">
                             <br><br>
                             <input type="submit" id="btn_criarChaves" value="Criar chaves">
                         `);
@@ -124,7 +124,6 @@ cifra.addEventListener("change", () => {
                     case "codificar":
                         
                         entrada.replaceChildren(document.getElementById("containerOpcaoRSA"));
-
 
                         entrada.insertAdjacentHTML("beforeend", `                     
                             <h3>Mensagem: </h3>

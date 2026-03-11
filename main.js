@@ -52,6 +52,12 @@ const gerarChavesRSA_DidaticasHTML = () => {
     const primo2 = Number(document.getElementsByClassName("primo")[1].value);
     
     if(primo1 == "" || primo2 == "") return 0;
+    else if(primo1 < "17" || primo2 < "17") return 0;
+
+    if(primo1 === primo2) {
+        alert("Insira números primos diferentes...");
+        return 0;
+    }
 
     const CHAVES = cifraRSA.gerarChavesRSA_Didaticas(primo1, primo2);
     
