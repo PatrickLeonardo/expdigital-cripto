@@ -1,3 +1,4 @@
+import { codifica_esteg, decodifica_esteg } from "./cifraEsteg2.js";
 import cifrarAtbash from "./cifrarAtbash.js";
 import cifrarCesar from "./cifrarCesar.js";
 import cifraRSA from "./cifraRSA.js";
@@ -87,7 +88,7 @@ const cifrarRSA_DidaticoHTML = () => {
 
 }
 
-const decifrarRSA_DidaticoHTML = () =>{
+const decifrarRSA_DidaticoHTML = () => {
 
     const cifra = document.getElementById("mensagem").value.split(",");
     const chavePrivadaD = Number(document.getElementById("chavePrivadaD").value);
@@ -101,4 +102,34 @@ const decifrarRSA_DidaticoHTML = () =>{
 
 }
 
-export default { cifrarAtbashHTML, cifrarCesarHTML, cifrarVinegereHTML, gerarChavesRSA_DidaticasHTML, cifrarRSA_DidaticoHTML, decifrarRSA_DidaticoHTML }
+const cifrarEsteganografiaHTML = () => {
+
+    const mascara = document.getElementById("mascara").value;
+    const esteg = document.getElementById("esteg").value;
+    
+    const texto_mascarado = codifica_esteg(mascara, esteg);
+
+    const codificacao = document.getElementById("codificacao")
+
+    codificacao.innerHTML = texto_mascarado;
+    codificacao.style.visibility = "visible";
+
+}
+
+const decifrarEsteganografiaHTML = () => {
+
+    const esteg = document.getElementById("mensagem").value;    
+    const texto_mascarado = decodifica_esteg(esteg);
+
+    const codificacao = document.getElementById("codificacao")
+
+    codificacao.innerHTML = texto_mascarado;
+    codificacao.style.visibility = "visible";
+
+}
+
+export default { 
+    cifrarAtbashHTML, cifrarCesarHTML, cifrarVinegereHTML,
+    gerarChavesRSA_DidaticasHTML, cifrarRSA_DidaticoHTML, 
+    decifrarRSA_DidaticoHTML, cifrarEsteganografiaHTML, decifrarEsteganografiaHTML
+};

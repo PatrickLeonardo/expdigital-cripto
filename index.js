@@ -1,5 +1,10 @@
 import cifrasResouce from "./main.js";
-const { cifrarAtbashHTML, cifrarCesarHTML, cifrarVinegereHTML, gerarChavesRSA_DidaticasHTML, cifrarRSA_DidaticoHTML, decifrarRSA_DidaticoHTML } = cifrasResouce;
+
+const { 
+    cifrarAtbashHTML, cifrarCesarHTML, cifrarVinegereHTML,
+    gerarChavesRSA_DidaticasHTML, cifrarRSA_DidaticoHTML,
+    decifrarRSA_DidaticoHTML, cifrarEsteganografiaHTML, decifrarEsteganografiaHTML
+} = cifrasResouce;
 
 document.querySelector("form").onsubmit = () => {
     event.preventDefault();
@@ -172,6 +177,83 @@ cifra.addEventListener("change", () => {
             }
             
             break;
+        
+        case "Esteganografia":
+
+            document.getElementById("codificacao").style.visibility = "hidden";
+            
+            entrada.innerHTML = `
+                <select id="opcaoEsteg">
+                    <option value="codificar">Codificar</option>
+                    <option value="decodificar">Decodificar</option>
+                </select>
+
+            `
+            
+            entrada.insertAdjacentHTML("beforeend", `
+                
+                <h3>Mensagem Visivel: </h3>
+                <input type="text" required placeholder="Olá, tudo bem com você" id="mascara">
+                
+                <h3>Mensagem não Visivel:</h3>
+                <input type="text" required placeholder="Reunião hoje" id="esteg">
+                <br>
+                <input type="submit" id="cifrarEsteg" value="Esconder">
+                
+            `);
+            
+            document.getElementById("opcaoEsteg").onchange = () => {
+                
+
+                if(document.getElementById("opcaoEsteg").value == "decodificar") {
+
+                    document.getElementById("codificacao").style.visibility = "hidden";
+                    entrada.replaceChildren(document.getElementById("opcaoEsteg"));
+
+                    entrada.insertAdjacentHTML("beforeend", `
+                        
+                        <h3>Mensagem: </h3>
+                        <input type="text" required placeholder="Olá, tudo bem com você" id="mensagem">
+                        
+                        <br>
+                        <input type="submit" id="decifrarEsteg" value="Revelar">
+                        
+                    `);
+
+                    document.getElementById("decifrarEsteg").onclick = () => {
+                        decifrarEsteganografiaHTML();
+                    }
+                    
+                } else {
+
+                    document.getElementById("codificacao").style.visibility = "hidden";
+                    entrada.replaceChildren(document.getElementById("opcaoEsteg"));
+
+                    entrada.insertAdjacentHTML("beforeend", `
+                        
+                        <h3>Mensagem Visivel: </h3>
+                        <input type="text" required placeholder="Olá, tudo bem com você" id="mascara">
+                        
+                        <h3>Mensagem não Visivel:</h3>
+                        <input type="text" required placeholder="Reunião hoje" id="esteg">
+                        <br>
+                        <input type="submit" id="cifrarEsteg" value="Esconder">
+                        
+                    `);
+
+                    document.getElementById("cifrarEsteg").onclick = () => {
+                        cifrarEsteganografiaHTML();
+                    }
+
+                }
+
+            }
+
+            document.getElementById("cifrarEsteg").onclick = () => {
+                cifrarEsteganografiaHTML();
+            }
+
+            break; 
         
     }
     
