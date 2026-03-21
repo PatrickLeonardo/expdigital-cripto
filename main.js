@@ -1,4 +1,4 @@
-import { codifica_esteg, decodifica_esteg } from "./cifraEsteg2.js";
+import { codifica_esteg, decodifica_esteg } from "./cifraEstegHex.js";
 import cifrarAtbash from "./cifrarAtbash.js";
 import cifrarCesar from "./cifrarCesar.js";
 import cifraRSA from "./cifraRSA.js";
