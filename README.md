@@ -369,3 +369,169 @@ console.log("RSA Cifrado:", cifrado); // Array de números
 const decifrado = cifraRSA.decifrarRSA_Didatico(cifrado, CHAVES.privada.D, CHAVES.privada.N);
 console.log("RSA Decifrado:", decifrado); // Esperado: "OLA"
 ```
+<hr>
+
+## Parte 5: Esteganografia em Texto com Caracteres Invisíveis (Unicode)
+
+🧠 Ideia central: Alguns caracteres do Unicode são invisíveis, ou seja, não aparecem na tela, mas continuam presentes no texto.
+
+👉 Isso permite esconder informação sem alterar visualmente o conteúdo
+
+🔍 Principais caracteres usados:
+
+    Zero Width Space (ZWSP) → U+200B
+    Zero Width Non-Joiner (ZWNJ) → U+200C
+    Zero Width Joiner (ZWJ) → U+200D
+
+💡 Eles:
+
+    Não ocupam espaço visível
+    Não aparecem para o usuário
+    Mas podem ser lidos por programas
+
+⚙️ Como funciona na prática
+
+Definimos um padrão de codificação:
+
+    ZWNJ → representa 0
+    ZWJ → representa 1
+
+Convertimos a mensagem para binário: Ex: letra → código ASCII → binário
+
+Inserimos os caracteres invisíveis no texto:
+
+    Entre letras
+    Entre palavras
+    Ou no final do texto
+
+🧪 Atividade: Esteganografia com Caracteres Invisíveis
+
+Você deverá implementar duas funções que utilizam caracteres invisíveis do Unicode para esconder e recuperar mensagens dentro de um texto comum.
+
+🎯 Objetivo
+
+Esconder uma mensagem secreta dentro de um texto visível sem alterar sua aparência.
+
+🧩 Função: Converter mensagem para binário (JavaScript)
+
+Transformar uma string em uma sequência binária (8 bits por caractere), que será usada na esteganografia.
+
+💻 Implementação realizada
+
+```js
+function textoParaBinario(mensagem) {
+  let resultado = "";
+
+  for (let i = 0; i < mensagem.length; i++) {
+    const codigo = mensagem.charCodeAt(i); // código ASCII/Unicode básico
+    const binario = codigo.toString(2).padStart(8, "0"); // garante 8 bits
+    resultado += binario;
+  }
+
+  return resultado;
+}
+```
+
+## 🧪 Atividade: Esteganografia em JavaScript
+
+Implemente duas funções em JavaScript para esconder e recuperar uma mensagem utilizando caracteres invisíveis do Unicode.
+
+### 🎯 Funções
+
+```js
+codifica_esteg(textoVisivel, mensagem)
+decodifica_esteg(textoCodificado)
+```
+
+### 📌 Requisitos
+
+- Converta a `mensagem` para binário (8 bits por caractere)  
+- Utilize:
+  - `U+200C` (ZWNJ) → bit **0**  
+  - `U+200D` (ZWJ) → bit **1**  
+- Insira os caracteres invisíveis no `textoVisivel` sem alterar sua aparência  
+- A função de decodificação deve recuperar a mensagem original  
+
+### ✅ Exemplo esperado
+
+```js
+const texto = "Hoje teremos aula normal.";
+const msg = "OK";
+
+const codificado = codifica_esteg(texto, msg);
+const decodificado = decodifica_esteg(codificado);
+
+console.log(decodificado); // "OK"
+```
+
+### Funções Implementadas:
+
+```js
+const codifica_esteg = (textoVisivel, mensagem) => {   
+
+    const esteg_binary = toBin(mensagem);
+
+    for(let i = 0; i < esteg_binary.length; i++) {
+
+        if(esteg_binary.charAt(i) == "0") {
+            textoVisivel = textoVisivel + "\u202D";
+        }
+        else {
+            textoVisivel = textoVisivel + "\u202C";
+        }
+
+    };
+
+    return textoVisivel;
+
+}
+```
+
+```js
+const decodifica_esteg = (textoCodificado) => {
+
+    let msg = "";
+    let result = "";
+
+    for(let i = 0; i < textoCodificado.length; i++) {
+        
+        if(textoCodificado.charAt(i) == "\u202D") {
+            result = result + "0";
+        }
+        else if(textoCodificado.charAt(i) == "\u202C") {
+            result = result + "1";
+        }
+
+    }
+
+    for(let j = 0; j <= result.length; j+=8) {
+
+        let byte = result.substring(j, j+8);
+        let decimal = parseInt(byte, 2);
+        let string = String.fromCharCode(decimal);
+
+        msg = msg + string;
+
+    }
+
+    return msg;
+
+}
+```
+
+```js
+function toBin(text) {
+    
+    let output = [];
+
+    text.split("").forEach(char => {
+
+        const bin = char.charCodeAt(0).toString(2);
+        output.push(Array(8 - bin.length + 1).join("0") + bin);
+        
+    });
+
+    return output.toString().replaceAll(",", "");
+
+}
+```
