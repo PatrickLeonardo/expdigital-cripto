@@ -16,7 +16,7 @@ h1 {
 form {
     margin-top: 50px;
     margin-bottom: 150px;
-    padding: 35px 45px 10px 45px;
+    padding: 35px 45px 30px 45px;
     border: solid 4px;
     border-color: rgb(26 26 26/var(--tw-text-opacity,1));
     border-radius: 14px;
@@ -51,6 +51,7 @@ select {
     background-color: Linen;
 }
 
+button,
 input[type="button"],
 input[type="submit"] {
     width: 370px;
@@ -65,12 +66,108 @@ input[type="submit"] {
 }
 
 #codificacao {
-    width: 370px;
+    width: 350px;
     background-color: Linen;
     border: 1px solid #ccc;
     border-radius: 8px;
     padding: 10px;
     visibility: hidden;
+}
+
+:root {
+	--accent-900: #49a87d;
+	--accent-800: #1b945b;
+	--notification-inset: 2rem;
+}
+
+.notification {
+  	color: rgba(0, 0, 0, 0.7);
+	  position: fixed;
+	  display: flex;
+	  font-size: 1.0rem;
+	  letter-spacing: 2px;
+	  line-height: 1.4;
+	  gap: 1.75rem;
+	  top: 0;
+	  right: 0;
+	  margin: var(--notification-inset);
+	  width: 24rem;
+	  background-color: white;
+	  box-shadow: 0 0 0.5rem rgba(0, 0, 0, 0.25);
+	  border-radius: 0.5rem;
+	  max-width: calc(100% - 4rem);
+	  z-index: 2;
+	  padding: 1.75rem 1.25rem 1.25rem;
+	  overflow: clip;
+	  transform: translateX(calc(100% + var(--notification-inset)));
+	  animation: slideInOut 4s cubic-bezier(0.33, 0, 0.66, 1.33);
+	  animation-play-state: var(--animation-play-state);
+
+	  &:hover {
+  		--animation-play-state: paused;
+	  }
+
+	  &:before {
+        content: "";
+        display: block;
+        inset: 0 0 auto;
+        height: 0.5rem;
+ 		background-color: var(--accent-900);
+	      transform-origin: left;
+        position: absolute;
+        animation: countdown 4s infinite linear;
+        animation-play-state: var(--animation-play-state);
+	}
+
+    &__text {
+        margin: 0.3rem 0 0;
+    }
+
+  	&__header {
+        color: black;
+        margin: 0;
+        font-size: 1.5rem;
+        font-weight: 600;
+    }
+
+	  &__action {
+        margin-left: auto;
+    }
+
+	  &__icon {
+        border-radius: 50%;
+        display: block;
+        aspect-ratio: 1;
+        background-size: 3rem;
+        background-color: var(--accent-900);
+        background-image: var(--check-svg);
+        background-repeat: no-repeat;
+        background-position: 50% 100%;
+        width: 3.2rem;
+        margin-bottom: auto;
+        flex-shrink: 0;
+	  }
+
+}
+
+
+@keyframes fadeOut {
+    from { opacity: 1; }
+    to { opacity: 0; }
+}
+
+@keyframes slideInOut {
+    15%,
+    66% {
+        transform: translateX(0);
+	  }
+}
+
+@keyframes countdown {
+   	66%,
+   	100% {
+        transform: scaleX(0);
+	  }
 }
 
 @media (max-width:600px) {
@@ -88,6 +185,7 @@ input[type="submit"] {
         padding-right: 20px;
     }
 
+    #copy,
     #codificacao,
     input[type="button"],
     input[type="submit"],
@@ -100,6 +198,12 @@ input[type="submit"] {
         margin-left: auto;
         margin-right: auto;
         padding: 10px;
+    }
+
+    .notification {
+
+        width: 30%;
+
     }
 
 }

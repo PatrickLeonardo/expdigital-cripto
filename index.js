@@ -204,8 +204,13 @@ cifra.addEventListener("change", () => {
             
             document.getElementById("opcaoEsteg").onchange = () => {
                 
-
                 if(document.getElementById("opcaoEsteg").value == "decodificar") {
+                    
+                    if(document.getElementById("copy")) {
+                        document.querySelector("form").removeChild(
+                            document.getElementById("copy")
+                        );
+                    }
 
                     document.getElementById("codificacao").style.visibility = "hidden";
                     entrada.replaceChildren(document.getElementById("opcaoEsteg"));

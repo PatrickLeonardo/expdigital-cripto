@@ -114,6 +114,44 @@ const cifrarEsteganografiaHTML = () => {
     codificacao.innerHTML = texto_mascarado;
     codificacao.style.visibility = "visible";
 
+    const copyBtn = document.createElement("button");
+    copyBtn.innerHTML = "Copiar"
+    copyBtn.id = "copy";
+    copyBtn.style.backgroundColor = "linen";
+    copyBtn.style.color = "rgb(20, 20, 20)";
+
+    copyBtn.onclick = () => {
+
+        navigator.clipboard.writeText(codificacao.innerHTML);
+        
+        const notification = document.createElement("span");
+
+        notification.innerHTML = "Copiado...";
+        notification.className = "notification"
+        
+        while(true) {
+            
+            if(document.getElementsByClassName("notification").length == 0) { 
+                
+                document.querySelector("body").appendChild(notification);
+                break;
+
+            } else {
+                
+                document.querySelector("body").removeChild(
+                    document.getElementsByClassName("notification")[0]
+                );
+                
+            }
+
+        }
+
+    }
+    
+    if(document.getElementById("copy") == null) {
+        document.querySelector("form").appendChild(copyBtn);
+    }
+
 }
 
 const decifrarEsteganografiaHTML = () => {
