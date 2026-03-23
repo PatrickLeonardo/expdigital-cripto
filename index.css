@@ -65,6 +65,14 @@ input[type="submit"] {
     transition: all 0.3s ease;
 }
 
+#opcaoEsteg {
+    width: 285px;
+}
+
+#modoEsteg {
+    width: 80px;
+}
+
 #codificacao {
     width: 350px;
     background-color: Linen;

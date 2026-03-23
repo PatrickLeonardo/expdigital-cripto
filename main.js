@@ -1,4 +1,5 @@
-import { codifica_esteg, decodifica_esteg } from "./cifraEstegHex.js";
+import * as cifraEstegHex from "./cifraEstegHex.js";
+import * as cifraEstegBin from "./cifraEstegBin.js";
 import cifrarAtbash from "./cifrarAtbash.js";
 import cifrarCesar from "./cifrarCesar.js";
 import cifraRSA from "./cifraRSA.js";
@@ -104,10 +105,17 @@ const decifrarRSA_DidaticoHTML = () => {
 
 const cifrarEsteganografiaHTML = () => {
 
+    const modo = document.getElementById("modoEsteg").value;
     const mascara = document.getElementById("mascara").value;
     const esteg = document.getElementById("esteg").value;
     
-    const texto_mascarado = codifica_esteg(mascara, esteg);
+    let texto_mascarado = ""; 
+
+    if(modo == "hex") {
+        texto_mascarado = cifraEstegHex.codifica_esteg(mascara, esteg);
+    } else {
+        texto_mascarado = cifraEstegBin.codifica_esteg(mascara, esteg);
+    }
 
     const codificacao = document.getElementById("codificacao")
 
@@ -155,13 +163,21 @@ const cifrarEsteganografiaHTML = () => {
 }
 
 const decifrarEsteganografiaHTML = () => {
+    
+    const modo = document.getElementById("modoEsteg").value;
 
     const esteg = document.getElementById("mensagem").value;    
-    const texto_mascarado = decodifica_esteg(esteg);
+    let texto_desmascarado = "";
+
+    if(modo == "hex") {
+        texto_desmascarado = cifraEstegHex.decodifica_esteg(esteg);
+    } else {
+        texto_desmascarado = cifraEstegBin.decodifica_esteg(esteg);
+    }
 
     const codificacao = document.getElementById("codificacao")
 
-    codificacao.innerHTML = texto_mascarado;
+    codificacao.innerHTML = texto_desmascarado;
     codificacao.style.visibility = "visible";
 
 }

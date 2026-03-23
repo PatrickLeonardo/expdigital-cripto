@@ -183,10 +183,17 @@ cifra.addEventListener("change", () => {
             document.getElementById("codificacao").style.visibility = "hidden";
             
             entrada.innerHTML = `
-                <select id="opcaoEsteg">
-                    <option value="codificar">Codificar</option>
-                    <option value="decodificar">Decodificar</option>
-                </select>
+                
+                <div id="configEsteg">
+                    <select id="opcaoEsteg">
+                        <option value="codificar">Codificar</option>
+                        <option value="decodificar">Decodificar</option>
+                    </select>
+                    <select id="modoEsteg">
+                        <option value="bin">Bin</option>
+                        <option value="hex">Hex</option>
+                    </select>
+                </div>
 
             `
             
@@ -213,7 +220,7 @@ cifra.addEventListener("change", () => {
                     }
 
                     document.getElementById("codificacao").style.visibility = "hidden";
-                    entrada.replaceChildren(document.getElementById("opcaoEsteg"));
+                    entrada.replaceChildren(document.getElementById("configEsteg"));
 
                     entrada.insertAdjacentHTML("beforeend", `
                         
@@ -232,7 +239,7 @@ cifra.addEventListener("change", () => {
                 } else {
 
                     document.getElementById("codificacao").style.visibility = "hidden";
-                    entrada.replaceChildren(document.getElementById("opcaoEsteg"));
+                    entrada.replaceChildren(document.getElementById("configEsteg"));
 
                     entrada.insertAdjacentHTML("beforeend", `
                         
