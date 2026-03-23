@@ -208,6 +208,14 @@ input[type="submit"] {
         padding: 10px;
     }
 
+    #opcaoEsteg {
+        width: 68%;
+    }
+
+    #modoEsteg {
+        width: 30%;
+    }
+
     .notification {
 
         width: 30%;
